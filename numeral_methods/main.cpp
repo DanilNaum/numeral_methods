@@ -21,20 +21,7 @@ eps_1 = 1e-6/(3 * 5.1 * 1e-1)=  | eps_2 = 1e-6 / (3 * 4.12) =
 constexpr auto EPS1 = 1E-5 / 15.3;
 constexpr auto EPS2 = 1E-6 / 12.39;
 constexpr auto EPS3 = 1E-5 / 3;
-/*vector <int> FactorialVector;
 
-unsigned long factorial(unsigned long x)
-{	while (FactorialVector.size() <= x) {
-		FactorialVector.push_back(0);
-	}
-	if (x == 0) FactorialVector[x] = 1;
-	if (FactorialVector[x] != 0) {
-		return FactorialVector[x];
-	}
-	
-	FactorialVector[x] = x * factorial(x - 1);
-	return FactorialVector[x];
-}*/
 
 double Z(double x) {
 	return cosh(1+sqrt(1+x))*cos(sqrt(1+x-pow(x,2)));
