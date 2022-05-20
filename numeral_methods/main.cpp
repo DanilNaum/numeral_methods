@@ -11,25 +11,25 @@ phi = cosh(1+sqrt(1+x))=		| g = cos(sqrt(1+x-x^2)) =
                        f = phi * z
 3.9 < phi < 4.13				| 0.50 < g < 0.51
 df/d(phi) = g					| df/d(g) = phi
-|df/d(phi)|<=0.51 = 5.1*1e-1	| |df/d(g)| <= 3.9 
+|df/d(phi)|<=0.51 = 5.1*1e-1	| |df/d(g)| <= 4,13 
 c_1 = 5.1 * 1e(-1)				| c_2 = 3.9
-eps_1 = 1e-6/(3 * 5.1 * 1e-1)=  | eps_2 = 1e-6 / (3 * 4.12) = 
+eps_1 = 1e-6/(3 * 5.1 * 1e-1)=  | eps_2 = 1e-6 / (3 * 4.13) = 
 = 1e-5 / 15.3                   | =1e-6 / 12,39
                        eps_3 = 1e-6 / 3
 
 */
 constexpr auto EPS1 = 1E-5 / 15.3;
 constexpr auto EPS2 = 1E-6 / 12.39;
-constexpr auto EPS3 = 1E-5 / 3;
+constexpr auto EPS3 = 1E-3 / 3;
 
 
 double Z(double x) {
 	return cosh(1+sqrt(1+x))*cos(sqrt(1+x-pow(x,2)));
 }
-double Z_Te(long double x) {
-	long double g_sum = 0,phi_sum = 0;
+double Z_Te(double x) {
+	double g_sum = 0,phi_sum = 0;
 	int k = 0;
-	long double phi = pow((1 + sqrt(1 + x)), 2 * k);
+	double phi = pow((1 + sqrt(1 + x)), 2 * k);
 	while (abs( phi) > EPS1) {
 		k++;
 		phi_sum += phi;
@@ -53,8 +53,8 @@ double Z_Te(long double x) {
 int main() {
 	
 	cout<<setw(15) << "x" << "|" << setw(15) << "Z(x)" << "|" << setw(15) << "Z_Te(x)"<< "|" << setw(15) << "delta:" << endl;
-	for (long double x = 0.1; x <= 0.205; x += 0.01) {
-		long double z = Z(x),z_t = Z_Te(x);
+	for (double x = 0.1; x <= 0.205; x += 0.01) {
+		double z = Z(x),z_t = Z_Te(x);
 		cout << setw(15) << setprecision(9) << x <<"|" << setw(15) << z <<"|" << setw(15) << z_t << "|" << setw(15) << abs(z-z_t) << endl;
 	}
 
